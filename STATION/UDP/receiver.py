@@ -9,5 +9,4 @@ print(f"UDP MIRROR RECEIVER on port {UDP_PORT}...")
 
 while True:
     data, addr = sock.recvfrom(4096)
-    # Devolver inmediatamente al emisor
     sock.sendto(data, addr)

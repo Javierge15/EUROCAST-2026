@@ -13,6 +13,3 @@ Change TARGET_IP with the vehicle's PC ```NETBIRD IP```
 ```bash
 docker compose up --build sender
 ```
-
-
-Check the ```.csv``` saved on the vehicle PC

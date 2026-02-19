@@ -4,9 +4,9 @@ services:
   ws-node:
     build: .
     container_name: websocket_research
-    network_mode: "host" # Para facilitar comunicación en red local
+    network_mode: "host"
     devices:
-      - "/dev/video0:/dev/video0"
+      - "/dev/video3:/dev/video3"
     privileged: true
     volumes:
       - ./app:/app

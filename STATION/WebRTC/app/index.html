@@ -3,7 +3,7 @@
 <head>
     <title>WebRTC DataChannel Lab</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #eef; } /* Fondo azulado para diferenciar */
+        body { font-family: sans-serif; text-align: center; background: #eef; }
         #metrics-display { background: #222; color: #0ff; padding: 10px; display: inline-block; margin-top: 10px; border-radius: 5px; font-family: monospace; }
         .controls-box { margin-top: 20px; padding: 20px; border: 1px solid #ccc; background: white; }
         button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #4a90e2; color: white; border: none; border-radius: 5px; }
@@ -38,7 +38,6 @@
         async function startWebRTC() {
             pc = new RTCPeerConnection();
 
-            // Crear Data Channel (reemplazo del WebSocket)
             dc = pc.createDataChannel("telemetry_stream");
             
             dc.onopen = () => {
@@ -51,10 +50,8 @@
                 const now = Date.now() / 1000;
                 const payload = JSON.parse(event.data);
                 
-                // --- CÁLCULO DE MÉTRICAS (Idéntico a tu WS) ---
                 const latencyMS = (now - payload.t_sent) * 1000;
                 const jitter = Math.abs(latencyMS - lastLatency);
-                // En DataChannel event.data es string/blob igual que en WS
                 const dataSize = new Blob([event.data]).size; 
                 
                 lastLatency = latencyMS;
@@ -73,7 +70,6 @@
                 });
             };
 
-            // Negociación (Signaling)
             const offer = await pc.createOffer();
             await pc.setLocalDescription(offer);
 

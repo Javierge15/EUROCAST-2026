@@ -34,23 +34,19 @@
         let lastLatency = 0;
 
         ws.onmessage = (event) => {
-            const now = Date.now() / 1000; // Segundos actuales
+            const now = Date.now() / 1000;
             const payload = JSON.parse(event.data);
             
-            // --- CÁLCULO DE MÉTRICAS ---
             const latencyMS = (now - payload.t_sent) * 1000;
             const jitter = Math.abs(latencyMS - lastLatency);
-            const dataSize = new Blob([event.data]).size; // Tamaño en bytes
-            
+            const dataSize = new Blob([event.data]).size;            
             lastLatency = latencyMS;
 
-            // Actualizar UI
             latSpan.innerText = latencyMS.toFixed(2);
             jitSpan.innerText = jitter.toFixed(2);
             fidSpan.innerText = payload.f_id;
             img.src = payload.image;
 
-            // Guardar en el log para el CSV
             metricsLog.push({
                 frame: payload.f_id,
                 latency: latencyMS.toFixed(4),
@@ -60,7 +56,6 @@
             });
         };
 
-        // Simulación de comandos de control (Teleoperación)
         setInterval(() => {
             if(ws.readyState === WebSocket.OPEN) {
                 const cmd = { t: Date.now(), steer: Math.random().toFixed(2) };

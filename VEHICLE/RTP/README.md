@@ -3,7 +3,6 @@
 docker compose up --build
 ```
 
-
 ## 2. RTP RECEIVER
 ```
 ffplay -protocol_whitelist file,udp,rtp -i video.sdp

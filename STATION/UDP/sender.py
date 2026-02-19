@@ -14,11 +14,10 @@ sock.settimeout(0.5)
 
 print(f"UDP SENDER (RTT MODE) -> {TARGET_IP}:{UDP_PORT}")
 
-# Abrimos el archivo y usamos flush para evitar que el CSV quede vacío
 with open(FILENAME, mode='w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["seq", "rtt_ms", "status", "timestamp"])
-    f.flush() # Escribir cabecera inmediatamente
+    f.flush()
 
     seq = 0
     try:
@@ -40,10 +39,8 @@ with open(FILENAME, mode='w', newline='') as f:
                 status = "LOST"
                 t_recv = time.time()
 
-            # Escribir fila
             writer.writerow([seq, f"{rtt_ms:.3f}", status, f"{t_recv:.6f}"])
             
-            # FORZAR ESCRITURA EN DISCO (Esto evita el archivo vacío)
             f.flush()
             os.fsync(f.fileno())
 
