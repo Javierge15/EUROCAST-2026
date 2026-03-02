@@ -6,6 +6,9 @@ This code was created and used for the research paper "Comparative Evaluation of
 
 ## REPOSITORY STRUCTURE
 
+- ### DOCS
+  Contains presentation slides, speaker notes, the conference paper and related documentation produced for EUROCAST 2026.
+
 - ### RESULTS
   Folder with analysis scripts and CSV files of metrics and telemetry for different experiments.
 
@@ -39,9 +42,7 @@ A peer-to-peer communication framework designed for sub-second latency, enabling
 ### WebSockets
 A persistent bi-directional channel that maintains a single open connection for continuous data exchange, ideal for real-time dashboard updates and low-bandwidth signaling.
 
-## Contributions
-
 
 ---
 
-> **Note:** This README provides a high-level overview of the repository. Refer to the specific protocol README.md for additional details.
+> **Note:** This README provides a high-level overview of the repository. Refer to the specific protocol README.md for additional details. See the `DOCS/` folder for slides, the paper, and presentation notes used at EUROCAST 2026.
