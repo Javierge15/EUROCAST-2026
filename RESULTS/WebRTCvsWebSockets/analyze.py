@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-# 1. FILE CONFIGURATION
-# Mapping the new telemetry files
 files = {
     'WebSockets Moving': 'telemetry_websockets_MOVING.csv',
     'WebSockets Stopped': 'telemetry_websockets_STOPPED_POS.csv',
@@ -25,11 +23,10 @@ for label, path in files.items():
 
 all_telemetry = pd.concat(dataframes, ignore_index=True)
 
-# 2. STYLE SETTINGS
 sns.set_theme(style="whitegrid")
 plt.rcParams.update({'font.size': 12, 'figure.autolayout': True})
 
-# --- GRAPH 1: LATENCY BOXPLOT (WebRTC vs WebSockets) ---
+# --- GRAPH 1: LATENCY BOXPLOT ---
 plt.figure(figsize=(10, 6))
 sns.boxplot(x='Test_Case', y='latency_ms', hue='Test_Case', data=all_telemetry, palette='Set1', legend=False)
 plt.title('Latency Comparison')
@@ -38,8 +35,7 @@ plt.xlabel('')
 plt.xticks(rotation=15)
 plt.savefig('telemetry_latency_boxplot.png', dpi=300)
 
-# --- GRAPH 2: JITTER DENSITY PLOT (KDE) ---
-# Using the KDE style you liked for the previous analysis
+# --- GRAPH 2: JITTER DENSITY PLOT ---
 plt.figure(figsize=(10, 6))
 sns.kdeplot(
     data=all_telemetry, 
@@ -53,11 +49,10 @@ sns.kdeplot(
 plt.title('Jitter Distribution')
 plt.xlabel('Jitter (ms)')
 plt.ylabel('Density')
-plt.xlim(0, 60) # Adjusted based on typical telemetry jitter
+plt.xlim(0, 60)
 plt.savefig('telemetry_jitter_density.png', dpi=300)
 
 # --- 3. METRICS GENERATION FOR THE PAPER ---
-# Calculating key statistics for your results table
 metrics = all_telemetry.groupby('Test_Case')['latency_ms'].agg([
     ('Mean Latency', 'mean'),
     ('Std Dev (Jitter)', 'std'),
@@ -71,5 +66,4 @@ print("="*50)
 print(metrics)
 print("="*50)
 
-# Save to CSV
 metrics.to_csv('telemetry_framework_results.csv')
