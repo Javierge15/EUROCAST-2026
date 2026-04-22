@@ -46,3 +46,7 @@ A persistent bi-directional channel that maintains a single open connection for 
 ---
 
 > **Note:** This README provides a high-level overview of the repository. Refer to the specific protocol README.md for additional details. See the `DOCS/` folder for slides, the paper, and presentation notes used at EUROCAST 2026.
+
+[![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#)
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](#)
